@@ -1,4 +1,7 @@
 ---
+- debug:
+    msg: "version: {{ configuration_version }} repo {{ edx_ansible_source_repo }}  dest {{ edx_ansible_code_dir }}"
+
 - name: Git checkout edx_ansible repo into edx_ansible_code_dir
   git:
     dest: "{{ edx_ansible_code_dir }}"
