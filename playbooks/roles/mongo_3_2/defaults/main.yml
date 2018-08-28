@@ -9,7 +9,7 @@ mongo_extra_conf: ''
 mongo_key_file: '/etc/mongodb_key'
 pymongo_version: 3.2.2
 
-mongo_data_dir: "{{ COMMON_DATA_DIR }}/mongo"
+mongo_data_dir: "/data/mongo"
 mongo_log_dir: "{{ COMMON_LOG_DIR }}/mongo"
 mongo_journal_dir: "{{ COMMON_DATA_DIR }}/mongo/mongodb/journal"
 mongo_user: mongodb
