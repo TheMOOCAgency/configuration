@@ -61,11 +61,11 @@
 - name: Copy files from default datadir
   copy:
     src: /var/lib/mysql
-    dest: /data/mysql
+    dest: /data/
     directory_mode: yes
     owner: mysql
     group: mysql
-    mode:  0755
+    mode: 0755
     force: no
     setype: mysqld_db_t
 
