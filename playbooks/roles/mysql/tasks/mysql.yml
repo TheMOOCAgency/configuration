@@ -69,10 +69,10 @@
     force: no
     setype: mysqld_db_t
 
-- name: Start mysql
+- name: Restart mysql
   service:
     name: mysql
-    state: started
+    state: restarted
 
 - name: Ensure Anonymous user(s) does not exist
   mysql_user:
