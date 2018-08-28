@@ -62,10 +62,10 @@
   copy:
     src: /var/lib/mysql
     dest: /data/
-    directory_mode: 0755
+    directory_mode: "0755"
     owner: mysql
     group: mysql
-    mode: 0755
+    mode: "0755"
     force: no
     setype: mysqld_db_t
 
