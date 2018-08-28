@@ -62,7 +62,7 @@
   copy:
     src: /var/lib/mysql
     dest: /data/
-    directory_mode: yes
+    directory_mode: 0755
     owner: mysql
     group: mysql
     mode: 0755
