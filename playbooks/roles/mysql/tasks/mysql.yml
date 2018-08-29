@@ -76,11 +76,12 @@
 
 - name: Check if apparmor is aware of new datadir
   shell: grep "^alias /var/lib/mysql/ -> /data/mysql," /etc/apparmor.d/tunables/alias
-  register: test_app_armor_mysql_datadir
+  register: test_apparmor_mysql_datadir
+  ignore_errors: yes
 
 - name: Add new mysql datadir to apparmor
   lineinfile: dest=/etc/apparmor.d/tunables/alias line="alias /var/lib/mysql/ -> /data/mysql,"
-  when: test_app_armor_mysql_datadi.stdout != ""
+  when: test_apparmor_mysql_datadir.stdout != ""
 
 - name: Restart apparmor
   service:
