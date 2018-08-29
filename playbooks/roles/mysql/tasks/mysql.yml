@@ -81,7 +81,7 @@
 
 - name: Add new mysql datadir to apparmor
   lineinfile: dest=/etc/apparmor.d/tunables/alias line="alias /var/lib/mysql/ -> /data/mysql,"
-  when: test_apparmor_mysql_datadir.stdout != ""
+  when: test_apparmor_mysql_datadir.stdout == ""
 
 - name: Restart apparmor
   service:
