@@ -49,6 +49,11 @@
 #    mode:  0755
 #    setype: mysqld_db_t
 
+- name : Stop mysql
+  service:
+    name: mysql
+    state: stopped
+
 - name: Copy mysqld.cnf global MySQL configuration.
   template:
     src: mysqld.cnf.j2
@@ -69,10 +74,23 @@
     force: no
     setype: mysqld_db_t
 
-- name: Restart mysql
+- name: Check if apparmor is aware of new datadir
+  shell: grep "^alias /var/lib/mysql/ -> /data/mysql," /etc/apparmor.d/tunables/alias
+  register: test_app_armor_mysql_datadir
+
+- name: Add new mysql datadir to apparmor
+  lineinfile: dest=/etc/apparmor.d/tunables/alias line="alias /var/lib/mysql/ -> /data/mysql,"
+  when: test_app_armor_mysql_datadi.stdout != ""
+
+- name: Restart apparmor
+  service:
+    name: apparmor
+    state: restarted
+
+- name: Start mysql
   service:
     name: mysql
-    state: restarted
+    state: started
 
 - name: Ensure Anonymous user(s) does not exist
   mysql_user:
