@@ -74,6 +74,10 @@
     force: no
     setype: mysqld_db_t
 
+- name: Install apparmor
+  apt:
+    name: apparmor
+
 - name: Check that /etc/apparmor.d/tunables/alias exists
   stat:
     path: /etc/file.txt
