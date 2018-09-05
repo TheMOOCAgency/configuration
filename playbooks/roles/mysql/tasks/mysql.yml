@@ -74,6 +74,17 @@
     force: no
     setype: mysqld_db_t
 
+- name: Check that /etc/apparmor.d/tunables/alias exists
+  stat:
+    path: /etc/file.txt
+  register: stat_result_apparmor_tunables_alias
+
+- name: Create the file /etc/apparmor.d/tunables/alias, if it doesnt exist already
+  file:
+    path: /etc/apparmor.d/tunables/alias
+    state: touch
+  when: stat_result_apparmor_tunables_alias.stat.exists == False 
+
 - name: Check if apparmor is aware of new datadir
   shell: grep "^alias /var/lib/mysql/ -> /data/mysql," /etc/apparmor.d/tunables/alias
   register: test_apparmor_mysql_datadir
