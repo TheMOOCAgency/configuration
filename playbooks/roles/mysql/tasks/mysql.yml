@@ -56,6 +56,60 @@
     state: present
   with_items: "{{ mysql_debian_pkgs }}"
 
+- name : Stop mysql
+  service:
+    name: mysql
+    state: stopped
+
+- name: Copy mysqld.cnf global MySQL configuration.
+  template:
+    src: mysqld.cnf.j2
+    dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
+    owner: root
+    group: root
+    mode: 0644
+    force: "yes"
+
+- name: Copy files from default datadir
+  copy:
+    src: /var/lib/mysql
+    dest: /data/
+    directory_mode: "0755"
+    owner: mysql
+    group: mysql
+    mode: "0755"
+    force: no
+    setype: mysqld_db_t
+
+- name: Install apparmor
+  apt:
+    name: apparmor
+
+- name: Check that /etc/apparmor.d/tunables/alias exists
+  stat:
+    path: /etc/file.txt
+  register: stat_result_apparmor_tunables_alias
+
+- name: Create the file /etc/apparmor.d/tunables/alias, if it doesnt exist already
+  file:
+    path: /etc/apparmor.d/tunables/alias
+    state: touch
+  when: stat_result_apparmor_tunables_alias.stat.exists == False 
+
+- name: Check if apparmor is aware of new datadir
+  shell: grep "^alias /var/lib/mysql/ -> /data/mysql," /etc/apparmor.d/tunables/alias
+  register: test_apparmor_mysql_datadir
+  ignore_errors: yes
+
+- name: Add new mysql datadir to apparmor
+  lineinfile: dest=/etc/apparmor.d/tunables/alias line="alias /var/lib/mysql/ -> /data/mysql,"
+  when: test_apparmor_mysql_datadir.stdout == ""
+
+- name: Restart apparmor
+  service:
+    name: apparmor
+    state: restarted
+
 - name: Start mysql
   service:
     name: mysql
