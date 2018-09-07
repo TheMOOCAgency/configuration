@@ -25,6 +25,7 @@ pymongo==3.1
 MySQL-python==1.2.5
 
 #needed for ATP
+pyparsing==2.2.0
 weasyprint==0.40
 xhtml2pdf==0.0.6
 sanitizer==1.0.0
