@@ -41,8 +41,8 @@ fi
 # Bootstrapping constants
 #
 VIRTUAL_ENV_VERSION="15.0.2"
-PIP_VERSION="8.1.2"
-SETUPTOOLS_VERSION="24.0.3"
+PIP_VERSION="9.0.3"
+SETUPTOOLS_VERSION="39.0.1"
 VIRTUAL_ENV="/tmp/bootstrap"
 PYTHON_BIN="${VIRTUAL_ENV}/bin"
 ANSIBLE_DIR="/tmp/ansible"
