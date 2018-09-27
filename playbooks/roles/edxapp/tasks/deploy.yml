@@ -268,8 +268,7 @@
     requirements: "{{ sandbox_base_requirements }}"
     virtualenv: "{{ edxapp_sandbox_venv_dir }}"
     state: present
-    chdir: "{{ edxapp_code_dir }}"
-    extra_args: "-i {{ COMMON_PYPI_MIRROR_URL }} --exists-action w"
+    extra_args: "-i {{ COMMON_PYPI_MIRROR_URL }} --exists-action w -r"
   become_user: "{{ edxapp_sandbox_user }}"
   when: EDXAPP_PYTHON_SANDBOX
   tags:
