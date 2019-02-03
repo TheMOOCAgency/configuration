@@ -400,7 +400,7 @@ EDXAPP_EDXMKTG_USER_INFO_COOKIE_NAME: "edx-user-info"
 # Settings for Grade downloads
 EDXAPP_GRADE_STORAGE_CLASS: 'django.core.files.storage.FileSystemStorage'
 EDXAPP_GRADE_STORAGE_KWARGS:
-  location: /tmp/edx-s3/grades
+  location: /edx/var/edxapp/media
 
 # These set the url for static files
 # Override this var to use a CDN
