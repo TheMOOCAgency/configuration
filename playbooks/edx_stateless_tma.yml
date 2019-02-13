@@ -81,7 +81,7 @@
     - role: xqueue
       update_users: True
     - certs
-    - edx_ansible
+    #- edx_ansible
     - role: datadog
       when: COMMON_ENABLE_DATADOG
     - role: splunkforwarder
