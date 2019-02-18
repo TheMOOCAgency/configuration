@@ -219,6 +219,7 @@
 
 - name: create nodeenv
   shell: "{{ edxapp_venv_dir }}/bin/nodeenv {{ edxapp_nodeenv_dir }} --node={{ edxapp_node_version }} --prebuilt --force"
+  ignore_errors: true      
   tags:
     - install
     - install:system-requirements
