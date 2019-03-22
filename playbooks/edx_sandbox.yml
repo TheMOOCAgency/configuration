@@ -58,8 +58,8 @@
       ECOMMERCE_WORKER_BROKER_HOST: 127.0.0.1
       when: SANDBOX_ENABLE_ECOMMERCE
     - programs
-    - analytics_api
-    - insights
+#    - analytics_api
+#    - insights
     # not ready yet: - edx_notes_api
     - demo
     - oauth_client_setup
@@ -71,13 +71,13 @@
       NOTIFIER_DIGEST_TASK_INTERVAL: 5
     - role: xqueue
       update_users: True
-    - certs
-    - edx_ansible
-    - role: datadog
-      when: COMMON_ENABLE_DATADOG
-    - role: splunkforwarder
-      when: COMMON_ENABLE_SPLUNKFORWARDER
-    - role: newrelic
-      when: COMMON_ENABLE_NEWRELIC
-    - role: postfix_queue
-      when: POSTFIX_QUEUE_EXTERNAL_SMTP_HOST != ''
+#    - certs
+#    - edx_ansible
+#    - role: datadog
+#      when: COMMON_ENABLE_DATADOG
+#    - role: splunkforwarder
+#      when: COMMON_ENABLE_SPLUNKFORWARDER
+#    - role: newrelic
+#      when: COMMON_ENABLE_NEWRELIC
+#    - role: postfix_queue
+#      when: POSTFIX_QUEUE_EXTERNAL_SMTP_HOST != ''
