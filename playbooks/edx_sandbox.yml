@@ -33,7 +33,7 @@
       #- certs
       - cms
       - lms
-      - forum
+      #- forum
       - xqueue
       nginx_default_sites:
       - lms
@@ -66,7 +66,7 @@
     - oraclejdk
     - role: elasticsearch
       when: "'localhost' in EDXAPP_ELASTIC_SEARCH_CONFIG|map(attribute='host')"
-    - forum
+    #- forum
     - role: notifier
       NOTIFIER_DIGEST_TASK_INTERVAL: 5
     - role: xqueue
