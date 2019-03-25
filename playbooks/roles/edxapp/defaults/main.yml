@@ -604,11 +604,11 @@ EDXAPP_PROCTORING_BACKEND_PROVIDER:
 
 # Comprehensive Theming
 # Deprecated, maintained for backward compatibility
-EDXAPP_COMPREHENSIVE_THEME_DIR: ""
+EDXAPP_COMPREHENSIVE_THEME_DIR: "/edx/app/edxapp/themes/atp_theme"
 
 # list of paths to the comprehensive theme directories
 EDXAPP_COMPREHENSIVE_THEME_DIRS:
-  - "{{ EDXAPP_COMPREHENSIVE_THEME_DIR }}"
+  - "/edx/app/edxapp/themes"
 
 # list of paths to the comprehensive theme locale directories
 EDXAPP_COMPREHENSIVE_THEME_LOCALE_PATHS: []
@@ -619,10 +619,10 @@ EDXAPP_ENABLE_COMPREHENSIVE_THEMING: false
 
 # Git repo for the comprehensive theme (if using a comprehensive theme
 # other than the ones bundled with edx/platform)
-EDXAPP_COMPREHENSIVE_THEME_SOURCE_REPO: ""
+EDXAPP_COMPREHENSIVE_THEME_SOURCE_REPO: "https://github.com/TheMOOCAgency/atp_theme"
 # Git branch, tag, or revision to check out from
 # EDXAPP_COMPREHENSIVE_THEME_SOURCE_REPO
-EDXAPP_COMPREHENSIVE_THEME_VERSION: ""
+EDXAPP_COMPREHENSIVE_THEME_VERSION: "master"
 
 # SAML KEYS
 EDXAPP_SOCIAL_AUTH_SAML_SP_PRIVATE_KEY: ''
@@ -958,13 +958,8 @@ generic_env_config:  &edxapp_generic_env
   REGISTRATION_EXTRA_FIELDS: "{{ EDXAPP_REGISTRATION_EXTRA_FIELDS }}"
   XBLOCK_SETTINGS: "{{ EDXAPP_XBLOCK_SETTINGS }}"
   EDXMKTG_USER_INFO_COOKIE_NAME: "{{ EDXAPP_EDXMKTG_USER_INFO_COOKIE_NAME }}"
-
-  # Deprecated, maintained for backward compatibility
-  COMPREHENSIVE_THEME_DIR: "{{ EDXAPP_COMPREHENSIVE_THEME_DIR }}"
-
-  COMPREHENSIVE_THEME_DIRS: "{{ EDXAPP_COMPREHENSIVE_THEME_DIRS }}"
   COMPREHENSIVE_THEME_LOCALE_PATHS: "{{ EDXAPP_COMPREHENSIVE_THEME_LOCALE_PATHS }}"
-  ENABLE_COMPREHENSIVE_THEMING: "{{ EDXAPP_ENABLE_COMPREHENSIVE_THEMING }}"
+
   DEFAULT_SITE_THEME: "{{ EDXAPP_DEFAULT_SITE_THEME }}"
   SESSION_SAVE_EVERY_REQUEST: "{{ EDXAPP_SESSION_SAVE_EVERY_REQUEST }}"
   SOCIAL_SHARING_SETTINGS: "{{ EDXAPP_SOCIAL_SHARING_SETTINGS }}"
@@ -1051,7 +1046,11 @@ lms_env_config:
   RECALCULATE_GRADES_ROUTING_KEY: "{{ EDXAPP_RECALCULATE_GRADES_ROUTING_KEY }}"
   CELERY_QUEUES: "{{ EDXAPP_LMS_CELERY_QUEUES }}"
   ALTERNATE_WORKER_QUEUES: "cms"
-
+  # Deprecated, maintained for backward compatibility
+  COMPREHENSIVE_THEME_DIR: ""
+  COMPREHENSIVE_THEME_DIRS: ""
+  ENABLE_COMPREHENSIVE_THEMING: ""
+  
 cms_auth_config:
   <<: *edxapp_generic_auth
   SEGMENT_KEY: "{{ EDXAPP_CMS_SEGMENT_KEY }}"
@@ -1085,7 +1084,11 @@ cms_env_config:
   CELERY_QUEUES: "{{ EDXAPP_CMS_CELERY_QUEUES }}"
   ALTERNATE_WORKER_QUEUES: "lms"
   COURSE_IMPORT_EXPORT_BUCKET: "{{ EDXAPP_IMPORT_EXPORT_BUCKET }}"
-
+  # Deprecated, maintained for backward compatibility
+  COMPREHENSIVE_THEME_DIR: "{{ EDXAPP_COMPREHENSIVE_THEME_DIR }}"
+  COMPREHENSIVE_THEME_DIRS: "{{ EDXAPP_COMPREHENSIVE_THEME_DIRS }}"
+  ENABLE_COMPREHENSIVE_THEMING: "{{ EDXAPP_ENABLE_COMPREHENSIVE_THEMING }}"
+  
 # install dir for the edx-platform repo
 edxapp_code_dir: "{{ edxapp_app_dir }}/edx-platform"
 
@@ -1123,10 +1126,10 @@ edxapp_theme_source_repo: 'https://{{ COMMON_GIT_MIRROR }}/Stanford-Online/edx-t
 edxapp_theme_version: 'master'
 
 # make this the public URL instead of writable
-edx_platform_repo: "https://{{ COMMON_GIT_MIRROR }}/edx/edx-platform.git"
+edx_platform_repo: "https://github.com/TheMOOCAgency/edx-platform.git"
 # `edx_platform_version` can be anything that git recognizes as a commit
 # reference, including a tag, a branch name, or a commit hash
-edx_platform_version: 'release'
+edx_platform_version: 'master'
 pre_requirements_file:    "{{ edxapp_code_dir }}/requirements/edx/pre.txt"
 github_requirements_file: "{{ edxapp_code_dir }}/requirements/edx/github.txt"
 custom_requirements_file:   "{{ edxapp_code_dir }}/requirements/edx/custom.txt"
