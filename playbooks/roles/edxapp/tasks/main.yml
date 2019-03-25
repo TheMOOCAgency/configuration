@@ -97,6 +97,11 @@
     - install
     - install:base
 
+- name: extract templated media dir for atp
+  unarchive:
+    src: atp_deployment.tar.gz.j2
+    dest: {{ edxapp_media_dir }}
+
 # adding chris-lea nodejs repo
 # TODO: 16.04
 - name: add ppas for current versions of nodejs
