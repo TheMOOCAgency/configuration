@@ -163,7 +163,7 @@ EDXAPP_CAS_ATTRIBUTE_PACKAGE: ""
 # Used for performance testing
 EDXAPP_ENABLE_AUTO_AUTH: false
 # Settings for enabling and configuring third party authorization
-EDXAPP_ENABLE_THIRD_PARTY_AUTH: false
+EDXAPP_ENABLE_THIRD_PARTY_AUTH: true
 EDXAPP_ENABLE_OAUTH2_PROVIDER: false
 
 EDXAPP_ENABLE_MOBILE_REST_API: false
@@ -615,7 +615,7 @@ EDXAPP_COMPREHENSIVE_THEME_LOCALE_PATHS: []
 
 # Name of the default site theme
 EDXAPP_DEFAULT_SITE_THEME: ""
-EDXAPP_ENABLE_COMPREHENSIVE_THEMING: false
+EDXAPP_ENABLE_COMPREHENSIVE_THEMING: true
 
 # Git repo for the comprehensive theme (if using a comprehensive theme
 # other than the ones bundled with edx/platform)
