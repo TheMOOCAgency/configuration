@@ -182,7 +182,7 @@
 - name: "Adding amundi backend into social"
   template:
     src: "amundi.py.j2"
-    dest: "{{ edxapp_app_dir }}/venvs/edxapp/lib/python2.7/site-packages/social_core/backends/amundi.py"
+    dest: "{{ edxapp_app_dir }}/venvs/edxapp/lib/python2.7/site-packages/social/backends/amundi.py"
     owner: "{{ edxapp_user }}"
     group: "{{ edxapp_user }}"
     mode: 0644
