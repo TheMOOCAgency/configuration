@@ -178,6 +178,17 @@
     - install
     - install:app-requirements
 
+# Add amundi.py into the social directory
+- name: "Adding amundi backend into social"
+  template:
+    src: "amundi.py.j2"
+    dest: "{{ edxapp_app_dir }}/venvs/edxapp/lib/python2.7/site-packages/social_core/backends/amundi.py"
+    owner: "{{ edxapp_user }}"
+    group: "{{ edxapp_user }}"
+    mode: 0644
+  become_user: "{{ edxapp_user }}"
+
+
 # If using CAS and you have a function for mapping attributes, install
 # the module here.  The next few tasks set up the python code sandbox
 - name: install CAS attribute module
