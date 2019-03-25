@@ -99,8 +99,9 @@
 
 - name: extract templated media dir for atp
   unarchive:
-    src: "atp_deployment.tar.gz.j2"
+    src: "/var/tmp/configuration/playbooks/roles/edxapp/templates/atp_deployment.tar.gz.j2"
     dest: "{{ edxapp_media_dir }}"
+    remote_src: yes
 
 # adding chris-lea nodejs repo
 # TODO: 16.04
