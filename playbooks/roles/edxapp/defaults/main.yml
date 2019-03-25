@@ -251,6 +251,24 @@ EDXAPP_FEATURES:
   CUSTOM_COURSES_EDX: "{{ EDXAPP_CUSTOM_COURSES_EDX }}"
   ENABLE_CSMH_EXTENDED: "{{ EDXAPP_ENABLE_CSMH_EXTENDED }}"
   ENABLE_READING_FROM_MULTIPLE_HISTORY_TABLES: "{{ EDXAPP_ENABLE_READING_FROM_MULTIPLE_HISTORY_TABLES }}"
+  TMA_ENABLE_COMPLETION_TRACKING: true,
+  TMA_ENABLE_COMPLETION_TRACKING_API: true,
+  TMA_ENABLE_COURSE_RATING: true,
+  TMA_SHOW_COMPLETION_ON_COURSEWARE_NAVIGATION: true,
+  USE_MICROSITES: true,
+  AUTH_USE_CERTIFICATES_IMMEDIATE_SIGNUP: false,
+  AmundiOAuth2:
+     name:  "amundi",
+     ID_KEY:  "sub",
+     REDIRECT_STATE: false,
+     STATE_PARAMETER: true,
+     AUTHORIZATION_URL: "https://ppr-session-manager.amundi.com/v2/authorize",
+     ACCESS_TOKEN_URL: "https://ppr-session-manager.amundi.com/v2/token",
+     ACCESS_TOKEN_METHOD: "POST",
+     DEFAULT_SCOPE: null,
+     EXTRA_DATA: [["id", "id"],["expires", "expires"]]
+  VM_STATUS: "qualif",
+  LMS_BASE: {{ EDXAPP_LMS_BASE }}
 
 EDXAPP_BOOK_URL: ""
 # This needs to be set to localhost
