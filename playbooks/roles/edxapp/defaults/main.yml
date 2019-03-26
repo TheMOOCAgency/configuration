@@ -267,7 +267,8 @@ EDXAPP_FEATURES:
     ACCESS_TOKEN_METHOD: "POST"
     DEFAULT_SCOPE: null
     EXTRA_DATA: [["id", "id"],["expires", "expires"]]
-  VM_STATUS: "qualif"
+  VM_STATUS: "{{ ATP_VM_STATUS }}"
+  SEM_CREDENTIALS: "{{ ATP_SEM_CREDENTIALS }}"
   LMS_BASE: "{{ EDXAPP_LMS_BASE }}"
 
 EDXAPP_BOOK_URL: ""
