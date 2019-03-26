@@ -193,6 +193,8 @@
   file:
     path: "{{ EDXAPP_MICROSITE_ROOT_DIR }}"
     state: directory
+    owner: "{{ edxapp_user }}"
+    group: "{{ edxapp_user }}"
     mode: "u=rww,g=rwx,o=r"
 
 
