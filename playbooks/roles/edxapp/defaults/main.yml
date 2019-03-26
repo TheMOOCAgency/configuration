@@ -1070,6 +1070,7 @@ lms_env_config:
   COMPREHENSIVE_THEME_DIRS: ""
   ENABLE_COMPREHENSIVE_THEMING: ""
   MICROSITE_BACKEND: "microsite_configuration.backends.database.DatabaseMicrositeBackend"
+  THIRD_PARTY_AUTH_BACKENDS: ["social.backends.amundi.AmundiOAuth2"]
   
 cms_auth_config:
   <<: *edxapp_generic_auth
