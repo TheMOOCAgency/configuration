@@ -191,7 +191,7 @@
 # Create edx-microsite dir
 - name: "Create edx-microsite dir"
   file:
-    path: "{{ MICROSITE_ROOT_DIR }}"
+    path: "{{ EDXAPP_MICROSITE_ROOT_DIR }}"
     state: directory
     mode: "u=rww,g=rwx,o=r"
 
