@@ -1069,6 +1069,7 @@ lms_env_config:
   COMPREHENSIVE_THEME_DIR: ""
   COMPREHENSIVE_THEME_DIRS: ""
   ENABLE_COMPREHENSIVE_THEMING: ""
+  MICROSITE_BACKEND: "microsite_configuration.backends.database.DatabaseMicrositeBackend"
   
 cms_auth_config:
   <<: *edxapp_generic_auth
