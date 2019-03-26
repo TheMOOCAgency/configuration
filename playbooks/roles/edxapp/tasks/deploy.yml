@@ -188,6 +188,13 @@
     mode: 0644
   become_user: "{{ edxapp_user }}"
 
+# Create edx-microsite dir
+- name: "Create edx-microsite dir"
+  file:
+    path: {{ MICROSITE_ROOT_DIR }}
+    state: directory
+    mode: "u=rww,g=rwx,o=r"
+
 
 # If using CAS and you have a function for mapping attributes, install
 # the module here.  The next few tasks set up the python code sandbox
