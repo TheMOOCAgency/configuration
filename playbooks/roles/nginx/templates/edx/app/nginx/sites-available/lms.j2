@@ -163,7 +163,7 @@ error_page {{ k }} {{ v }};
       set $global_page  "${global_site}Y";
     }
      if ($global_page = YY){
-      return 302 https://ec2-52-50-120-43.eu-west-1.compute.amazonaws.com/global?next=$request_uri;
+      return 302 https://{{ EDXAPP_LMS_BASE }}?next=$request_uri;
     }
     try_files $uri @proxy_to_lms_app;
   }
