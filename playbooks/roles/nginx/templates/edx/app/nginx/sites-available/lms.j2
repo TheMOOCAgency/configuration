@@ -153,7 +153,18 @@ error_page {{ k }} {{ v }};
     {% if EDXAPP_LMS_ENABLE_BASIC_AUTH|bool %}
       {% include "basic-auth.j2" %}
     {% endif %}
-
+    #Managig redirection to global if not on a given microsite
+    if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
+    {
+      set $global_site  Y;
+    }
+    if ($request_uri !~ "(^/static/.*$)|(^/global.*$)|(^/media/.*$)")
+    {
+      set $global_page  "${global_site}Y";
+    }
+     if ($global_page = YY){
+      return 302 https://ec2-52-50-120-43.eu-west-1.compute.amazonaws.com/global?next=$request_uri;
+    }
     try_files $uri @proxy_to_lms_app;
   }
 
