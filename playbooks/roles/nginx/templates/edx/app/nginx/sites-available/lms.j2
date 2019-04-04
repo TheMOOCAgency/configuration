@@ -153,7 +153,7 @@ error_page {{ k }} {{ v }};
     {% if EDXAPP_LMS_ENABLE_BASIC_AUTH|bool %}
       {% include "basic-auth.j2" %}
     {% endif %}
-    #Managig redirection to global if not on a given microsite
+    #Managing redirection to global if not on a given microsite
     if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
     {
       set $global_site  Y;
@@ -163,7 +163,7 @@ error_page {{ k }} {{ v }};
       set $global_page  "${global_site}Y";
     }
      if ($global_page = YY){
-      return 302 https://{{ EDXAPP_LMS_BASE }}?next=$request_uri;
+      return 302 https://{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
     }
     try_files $uri @proxy_to_lms_app;
   }
@@ -172,6 +172,18 @@ error_page {{ k }} {{ v }};
   # determine whether a user on their site is logged into edX.
   # The most common image to use is favicon.ico.
   location /login {
+    #Managing redirection to global if not on a given microsite
+    if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
+    {
+      set $global_site  Y;
+    }
+    if ($request_uri !~ "(^/static/.*$)|(^/global.*$)|(^/media/.*$)")
+    {
+      set $global_page  "${global_site}Y";
+    }
+     if ($global_page = YY){
+      return 302 https://{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
+    }
     {% if EDXAPP_LMS_ENABLE_BASIC_AUTH|bool %}
       {% include "basic-auth.j2" %}
     {% endif %}
@@ -238,6 +250,18 @@ error_page {{ k }} {{ v }};
 
   # No basic auth security on third party auth endpoints
   location /auth {
+     #Managing redirection to global if not on a given microsite
+    if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
+    {
+      set $global_site  Y;
+    }
+    if ($request_uri !~ "(^/static/.*$)|(^/global.*$)|(^/media/.*$)")
+    {
+      set $global_page  "${global_site}Y";
+    }
+     if ($global_page = YY){
+      return 302 https://{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
+    }
     try_files $uri @proxy_to_lms_app;
   }
 
@@ -266,6 +290,18 @@ error_page {{ k }} {{ v }};
   }
 
   location /courses {
+     #Managing redirection to global if not on a given microsite
+    if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
+    {
+      set $global_site  Y;
+    }
+    if ($request_uri !~ "(^/static/.*$)|(^/global.*$)|(^/media/.*$)")
+    {
+      set $global_page  "${global_site}Y";
+    }
+     if ($global_page = YY){
+      return 302 https://{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
+    }
     {%- if EDXAPP_ENABLE_RATE_LIMITING -%}
     # Set Limit
     limit_req zone=cookies burst={{ EDXAPP_COURSES_REQUEST_BURST_RATE }};
