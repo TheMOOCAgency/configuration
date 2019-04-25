@@ -157,7 +157,7 @@ error_page {{ k }} {{ v }};
     #It is not a microsite and not a static or media or global (all are in specific location directives), go to global page with redirect
     if ($host !~ "(^europe.*$)|(^asia.*$)|(^americas.*$)")
     {
-        return 302 https://{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
+        return 302 https://www.{{ EDXAPP_LMS_BASE }}/global?next=$request_uri;
     }
     #If it is a microsite, go for it
     try_files $uri @proxy_to_lms_app;
