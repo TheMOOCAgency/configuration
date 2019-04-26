@@ -105,13 +105,14 @@ fi
 
 EXTRA_VARS="-e@$(pwd)/config.yml $EXTRA_VARS"
 
-CONFIGURATION_VERSION=${CONFIGURATION_VERSION-$OPENEDX_RELEASE}
+#CONFIGURATION_VERSION=${CONFIGURATION_VERSION-$OPENEDX_RELEASE}
+CONFIGURATION_VERSION="ironwood.1_tma"
 
 ##
 ## Clone the configuration repository and run Ansible
 ##
 cd /var/tmp
-git clone https://github.com/edx/configuration
+git clone https://github.com/TheMOOCAgency/configuration
 cd configuration
 git checkout $CONFIGURATION_VERSION
 git pull
